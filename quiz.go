@@ -8,12 +8,15 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
 )
 
 var (
 	problemsFile    = "problems.csv"
 	quizDuration    = 30
 	shuffleProblems = true
+	cyan            = color.New(color.FgCyan)
 )
 
 func readProblems(problemsFile string) ([][]string, error) {
@@ -47,6 +50,7 @@ func askQuestions(problems [][]string, timerExpired chan bool) (int, int) {
 
 		var userAnswer string
 		fmt.Printf("Question %d: %s\n", qid+1, question)
+		fmt.Println("Answer: ")
 
 		go func() {
 			fmt.Scanln(&userAnswer)
@@ -77,7 +81,7 @@ func startQuiz(problemsFile string) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Enter any key to start the quiz...")
+	cyan.Println(">> Press any key to start the quiz <<")
 	fmt.Scanln()
 
 	timerExpired := make(chan bool)
