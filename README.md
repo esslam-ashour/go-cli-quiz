@@ -11,9 +11,9 @@ Usage:
 
 The flags are:
 
-    -problems=<string>                  this is the name of the problems CSV file
-    -duration=<int>                     this is the duration of the quiz in seconds
-    -shuffle=<bool>                     this is the option to shuffle problems
+    -problems=<string>                  this is the name of the problems CSV file (default is "problems.csv")
+    -duration=<int>                     this is the duration of the quiz in seconds (default is 30 seconds)
+    -shuffle=<bool>                     this is the option to shuffle problems (default is false)
       
 
 ## Skills I learned:
