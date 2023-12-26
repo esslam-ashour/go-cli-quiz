@@ -6,6 +6,7 @@
 A simple quiz CLI app made using Go.
 
 ## Usage:
+
 First, `quiz.go` needs to be compiled, run the following command inside the directory:
     `go build`
     
