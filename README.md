@@ -17,7 +17,7 @@ The flags are:
 
 Examples:
 
-    `go-quiz-cli -problems="quiz_problems.csv" -duration=130 -shuffle=true`
+    go-quiz-cli -problems="quiz_problems.csv" -duration=130 -shuffle=true
       
 
 ## Skills I learned:
