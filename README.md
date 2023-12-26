@@ -9,11 +9,11 @@ A simple quiz CLI app made using Go.
 
 First, `quiz.go` needs to be compiled, run the following command inside the directory:
 
-    `go build quiz.go`
+    go build quiz.go
     
 Then, we can use the program as follows:
 
-    `go run qo-quiz-cli [flags]`
+    go run qo-quiz-cli [flags]
 
 The flags are:
 
