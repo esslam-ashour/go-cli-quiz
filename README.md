@@ -17,13 +17,13 @@ Then, we can use the program as follows:
 
 The flags are:
 
-    -pfile=<string>                  this is the name of the problems CSV file (default is "problems.csv")
+    -pfile=<string>                     this is the name of the problems CSV file (default is "problems.csv")
     -duration=<int>                     this is the duration of the quiz in seconds (default is 30 seconds)
     -shuffle=<bool>                     this is the option to shuffle problems (default is false)
 
 Example:
 
-    go-quiz-cli -problems="quiz_problems.csv" -duration=130 -shuffle=true
+    goquiz -pfile="quiz_problems.csv" -duration=130 -shuffle=true
       
 
 ## Skills I learned:
