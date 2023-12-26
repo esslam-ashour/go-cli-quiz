@@ -13,7 +13,7 @@ First, `quiz.go` needs to be compiled, run the following command inside the dire
     
 Then, we can use the program as follows:
 
-    go run qo-quiz-cli [flags]
+    goquiz [flags]
 
 The flags are:
 
