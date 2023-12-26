@@ -6,12 +6,13 @@
 A simple quiz CLI app made using Go.
 
 Usage:
+First, `quiz.go` needs to be 
 
     go run qo-quiz-cli [flags]
 
 The flags are:
 
-    -problems=<string>                  this is the name of the problems CSV file (default is "problems.csv")
+    -pfile=<string>                  this is the name of the problems CSV file (default is "problems.csv")
     -duration=<int>                     this is the duration of the quiz in seconds (default is 30 seconds)
     -shuffle=<bool>                     this is the option to shuffle problems (default is false)
 
