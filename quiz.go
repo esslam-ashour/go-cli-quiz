@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"log"
 	"math/rand"
@@ -12,14 +13,27 @@ import (
 	"github.com/fatih/color"
 )
 
-var (
-	problemsFile    = "problems.csv"
-	quizDuration    = 30
-	shuffleProblems = true
-	cyan            = color.New(color.FgCyan)
-)
+var cyan = color.New(color.FgCyan)
+var introText = `
+						░██████╗░░█████╗░░██████╗░██╗░░░██╗██╗███████╗░█████╗░██╗░░░░░██╗
+						██╔════╝░██╔══██╗██╔═══██╗██║░░░██║██║╚════██║██╔══██╗██║░░░░░██║
+						██║░░██╗░██║░░██║██║██╗██║██║░░░██║██║░░███╔═╝██║░░╚═╝██║░░░░░██║
+						██║░░╚██╗██║░░██║╚██████╔╝██║░░░██║██║██╔══╝░░██║░░██╗██║░░░░░██║
+						╚██████╔╝╚█████╔╝░╚═██╔═╝░╚██████╔╝██║███████╗╚█████╔╝███████╗██║
+						░╚═════╝░░╚════╝░░░░╚═╝░░░░╚═════╝░╚═╝╚══════╝░╚════╝░╚══════╝╚═╝
+`
 
-func readProblems(problemsFile string) ([][]string, error) {
+func parseFlags() (string, int, bool) {
+	problemsFile := flag.String("pfile", "problems.csv", "The name of the problems CSV file")
+	quizDuration := flag.Int("duration", 30, "The time duration for the quiz")
+	shuffleProblems := *flag.Bool("shuffle", false, "Option to shuffle questions")
+	flag.Parse()
+
+	return *problemsFile, *quizDuration, shuffleProblems
+}
+
+func readProblems(problemsFile string, shuffleProblems bool) ([][]string, error) {
+
 	file, err := os.Open(problemsFile)
 	if err != nil {
 		return nil, fmt.Errorf("error while reading file: %v", err)
@@ -38,7 +52,7 @@ func readProblems(problemsFile string) ([][]string, error) {
 	return records, nil
 }
 
-func askQuestions(problems [][]string, timerExpired chan bool) (int, int) {
+func askQuestions(problems [][]string, timerExpired chan bool, quizDuration int) (int, int) {
 	correctCount := 0
 	wrongCount := 0
 
@@ -49,7 +63,7 @@ func askQuestions(problems [][]string, timerExpired chan bool) (int, int) {
 		answer := record[1]
 
 		var userAnswer string
-		fmt.Printf("Question %d: %s\n", qid+1, question)
+		fmt.Printf("Question %d: %s\n\n", qid+1, question)
 		fmt.Println("Answer: ")
 
 		go func() {
@@ -75,8 +89,8 @@ func askQuestions(problems [][]string, timerExpired chan bool) (int, int) {
 	return correctCount, wrongCount
 }
 
-func startQuiz(problemsFile string) {
-	problems, err := readProblems(problemsFile)
+func startQuiz(problemsFile string, shuffleProblems bool, quizDuration int) {
+	problems, err := readProblems(problemsFile, shuffleProblems)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,10 +99,13 @@ func startQuiz(problemsFile string) {
 	fmt.Scanln()
 
 	timerExpired := make(chan bool)
-	correct, wrong := askQuestions(problems, timerExpired)
-	fmt.Printf("You got %d correct answers and %d wrong answers\n", correct, wrong)
+	correct, wrong := askQuestions(problems, timerExpired, quizDuration)
+	fmt.Printf("You got %d correct answers and %d wrong answers. That is a score of %d", correct, wrong, (correct/wrong)*100)
+	fmt.Printf("Thanks for playing!")
 }
 
 func main() {
-	startQuiz(problemsFile)
+	cyan.Println(introText)
+	problemsFile, quizDuration, shuffleProblems := parseFlags()
+	startQuiz(problemsFile, shuffleProblems, quizDuration)
 }
