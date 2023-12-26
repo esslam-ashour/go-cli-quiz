@@ -14,6 +14,10 @@ The flags are:
     -problems=<string>                  this is the name of the problems CSV file (default is "problems.csv")
     -duration=<int>                     this is the duration of the quiz in seconds (default is 30 seconds)
     -shuffle=<bool>                     this is the option to shuffle problems (default is false)
+
+Examples:
+
+    `go-quiz-cli -problems="quiz_problems.csv" -duration=130 -shuffle=true`
       
 
 ## Skills I learned:
