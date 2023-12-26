@@ -27,8 +27,8 @@ Example:
       
 
 ## Skills I learned:
-* Go syntax: utilized Go for the whole program
-* File handling and CSV parsing: utilized the `encoding` package in order to parse CSV files
-* Error handling: ensured errors are handled and explicit when possible, especially errors resulting from invalid user input
-* Concurrent programming: utilized goroutines and channels for simultaneous user input and timer management
+* **Go syntax:** utilized Go for the whole program
+* **File handling and CSV parsing:** utilized the `encoding` package in order to parse CSV files
+* **Error handling:** ensured errors are handled and explicit when possible, especially errors resulting from invalid user input
+* **Concurrent programming:** utilized goroutines and channels for simultaneous user input and timer management
 
