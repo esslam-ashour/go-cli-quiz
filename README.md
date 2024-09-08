@@ -9,7 +9,10 @@ A simple quiz CLI app made using Go.
 
 First, `quiz.go` needs to be compiled, run the following command inside the directory:
 
-    go build quiz.go
+
+```bash   
+go build quiz.go
+```
     
 Run GoQuizCLI as follows:
 
